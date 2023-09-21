@@ -1,3 +1,4 @@
+import '../Pages/cartscreen.css'
 
 const CartScreen = () => {
     return(

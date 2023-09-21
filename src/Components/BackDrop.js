@@ -1,11 +1,7 @@
 import '../Style/backDrop.css';
 
-const BackDrop = () => {
-    return(
-        <div className="backdrop">
-            <h5>drop</h5>
-        </div>
-    );
+const BackDrop = ({show, click}) => {
+    return show && <div className="backdrop" onClick={click}></div>
 }
 
 export default BackDrop
