@@ -1,9 +1,8 @@
-import { json } from 'react-router-dom';
 import axios from 'axios';
 import * as actionTypes from '../constants/cartConstants';
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`);
+  const { data } = await axios.get(`http://localhost:5000/api/v1/products/${id}`);
 
   dispatch({
     type: actionTypes.ADD_TO_CART,
@@ -26,5 +25,5 @@ export const removeFromCart = (id) => (dispatch, getState) => {
     payload: id,
   });
 
-  localStorage.setItem('cart', json.stringify(getState().cart.cart));
+  localStorage.setItem('cart', JSON.stringify(getState().cart.cart));
 };
