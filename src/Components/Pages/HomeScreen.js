@@ -1,8 +1,8 @@
 import Product from '../product';
-import './homescreen.css';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts as listProducts } from '../../redux/Actions/productAction';
+import './homescreen.css';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();

@@ -1,8 +1,8 @@
-import './cartscreen.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartItem from '../cartItem';
 import { addToCart, removeFromCart } from '../../redux/Actions/cartAction';
+import './cartscreen.css';
 
 const CartScreen = () => {
   const dispatch = useDispatch();
