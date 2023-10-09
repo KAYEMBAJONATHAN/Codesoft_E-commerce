@@ -11,21 +11,18 @@ const SideDraw = ({ show, click }) => {
   }
 
   const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
+  const cartItems = cart.cartItems || [];
 
-  const getCartCount = () => cartItems.reduce((qty, item) => qty * Number(item.qty), 0);
+  const getCartCount = () => cartItems.reduce((qty, item) => qty + Number(item.qty), 0);
 
   return (
     <div className={sideDrawClass.join(' ')}>
       <ul className="sidedraw-links" onClick={click}>
         <li>
           <Link to="/">
-            <i
-              className="fas fa-shopping-cart"
-            />
+            <i className="fas fa-shopping-cart" />
             <span>
               Cart
-
               <span className="sidedraw-cartbadge">{getCartCount()}</span>
             </span>
           </Link>

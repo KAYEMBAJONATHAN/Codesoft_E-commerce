@@ -1,24 +1,37 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getProductDetails } from '../../redux/Actions/productAction';
 import { addToCart } from '../../redux/Actions/cartAction';
 import './productScreen.css';
 
-const ProductScreen = ({ match, history }) => {
+const ProductScreen = () => {
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.getProductDetails);
-  const { loading, error, prduct } = productDetails;
+  const { loading, error, product } = productDetails;
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (prduct && match.params.id !== prduct._id) {
-      dispatch(getProductDetails(match.params.id));
+    if (product && id !== product._id) {
+      dispatch(getProductDetails(id));
     }
-  }, [dispatch, prduct, match]);
+  }, [dispatch, product, id]);
+
+  // const isInStock = product && product.countInStock > 0;
+
+  // let statusMessage;
+  // if (isInStock) {
+  //   statusMessage = 'In Stock';
+  //  } else {
+  //   statusMessage = 'Out of Stock';
+  // }
 
   const addToCartHandler = () => {
-    dispatch(addToCart(prduct._id, qty));
-    history.push('/cart');
+    dispatch(addToCart(product._id, qty));
+    navigate('/cart');
   };
 
   return (
@@ -27,18 +40,18 @@ const ProductScreen = ({ match, history }) => {
         <>
           <div className="productScreen-left">
             <div className="left-image">
-              <img src={prduct.imageUrl} alt={prduct.name} />
+              <img src={product.imageUrl} alt={product.name} />
             </div>
             <div className="left-info">
-              <p className="left-name">{prduct.name}</p>
+              <p className="left-name">{product.name}</p>
               <p>
                 Price:
                 $
-                {prduct.price}
+                {product.price}
               </p>
               <p>
                 Description:
-                {prduct.description}
+                {product.description}
               </p>
             </div>
           </div>
@@ -48,24 +61,23 @@ const ProductScreen = ({ match, history }) => {
                 Price:
                 <span>
                   $
-                  {prduct.price}
+                  {product.price}
                 </span>
               </p>
               <p>
                 Status:
                 <span>
-                  {prduct.countInStoct > 0 ? 'In Stock' : 'Out of Stock'}
+                  {product.countInStoct > 0 ? 'In Stock' : 'Out of Stock'}
                 </span>
               </p>
               <p>
                 Qty
-                <select value={qty} onChange={(e) => setQty(e.target)}>
-                  {[...Array(product.countInStoct).keys()].map((x) => {
+                <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                  {[...Array(product.countInStock).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
                       {x + 1}
-                    </option>;
-                  })}
-                  ;
+                    </option>
+                  ))}
                 </select>
               </p>
               <p>
@@ -83,4 +95,5 @@ const ProductScreen = ({ match, history }) => {
     </div>
   );
 };
+
 export default ProductScreen;

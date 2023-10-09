@@ -25,14 +25,15 @@ export const getProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:5000/api/v1/products${id}`);
+    const { data } = await axios.get(`http://localhost:5000/api/v1/products/${id}`);
+
     dispatch({
-      type: actionTypes.GET_PRODUCTS_SUCESS,
+      type: actionTypes.GET_PRODUCT_DETAILS_SUCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: actionTypes.GET_PRODUCTS_FAIL,
+      type: actionTypes.GET_PRODUCT_DETAILS_FAIL,
       payload:
           error.response && error.response.data.message
             ? error.response.data.message

@@ -4,11 +4,11 @@ import * as actionTypes from '../constants/cartConstants';
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   try {
     const { data } = await axios.get(`http://localhost:5000/api/v1/products/${id}`);
-
+    console.log('Fetched Product Data:', data);
     dispatch({
       type: actionTypes.ADD_TO_CART,
       payload: {
-        productId: data._id, // Changed variable name to 'productId'
+        product: data._id,
         name: data.name,
         imageUrl: data.imageUrl,
         price: data.price,
@@ -17,9 +17,9 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       },
     });
 
-    localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems)); // Corrected 'Json' to 'JSON'
+    localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
   } catch (error) {
-    console.error(error); // Handle errors appropriately
+    console.error(error);
   }
 };
 

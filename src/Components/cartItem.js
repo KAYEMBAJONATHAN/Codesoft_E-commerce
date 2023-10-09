@@ -16,9 +16,7 @@ const CartItem = ({ item, qtyChangeHandler, removeFromCart }) => (
     >
       <p>{item.name}</p>
     </Link>
-    <p
-      className="cart-price"
-    >
+    <p className="cart-price">
       $
       {item.price}
     </p>
@@ -28,11 +26,11 @@ const CartItem = ({ item, qtyChangeHandler, removeFromCart }) => (
       value={item.qty}
       onChange={(e) => qtyChangeHandler(item.product, e.target.value)}
     >
-      {[...Array(item.countInStock).keys()].map((x) => {
-        <option keys={x + 1} value={x + 1}>
+      {[...Array(item.countInStock).keys()].map((x) => (
+        <option key={x + 1} value={x + 1}>
           {x + 1}
-        </option>;
-      })}
+        </option>
+      ))}
     </select>
 
     <button
@@ -40,9 +38,7 @@ const CartItem = ({ item, qtyChangeHandler, removeFromCart }) => (
       className="cart-deleteBtn"
       onClick={() => removeFromCart(item.product)}
     >
-      <i
-        className="fas fa-trash"
-      />
+      <i className="fas fa-trash" />
     </button>
   </div>
 );

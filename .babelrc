@@ -1,7 +1,8 @@
 {
-    "presets": [
-        "@babel/preset-react"
-    ],
-    "plugins": ["@babel/plugin-syntax-jsx"]
+    "presets": ["@babel/preset-env", "@babel/preset-react"],
+    "plugins": [
+      // Other plugins
+      "@babel/plugin-proposal-private-property-in-object"
+    ]
   }
   
