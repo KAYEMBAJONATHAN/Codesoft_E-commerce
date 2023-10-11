@@ -20,7 +20,7 @@ const CartScreen = () => {
   };
 
   const handleCheckout = () => {
-    console.log('/checkout');
+    console.log('checkout');
     // const outOfStockItems = cartItems.filter((item) => item.qty > item.countInStock);
 
     // if (outOfStockItems.length > 0) {
@@ -72,7 +72,7 @@ const CartScreen = () => {
           </p>
         </div>
         <div>
-          <button type="button" onClick={handleCheckout}>Proceed To Checkout</button>
+          <button type="button" onClick={handleCheckout()}>Proceed To Checkout</button>
         </div>
       </div>
     </div>

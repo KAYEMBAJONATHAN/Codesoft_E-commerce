@@ -32,6 +32,7 @@ const HomeScreen = () => {
               price={product.price}
               description={product.description}
               imageUrl={product.imageUrl}
+              countInStoct={product.countInStoct}
             />
           ))
         )}

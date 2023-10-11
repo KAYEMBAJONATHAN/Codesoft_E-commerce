@@ -13,16 +13,13 @@ const cartReducer = (state = initialState, action) => {
       if (existingItem) {
         return {
           ...state,
-          cartItems: state.cartItems.map((x) =>
-            x.product === existingItem.product ? itemToAdd : x
-          ),
-        };
-      } else {
-        return {
-          ...state,
-          cartItems: [...state.cartItems, itemToAdd],
+          cartItems: state.cartItems.map((x) => (x.product === existingItem.product ? itemToAdd : x)),
         };
       }
+      return {
+        ...state,
+        cartItems: [...state.cartItems, itemToAdd],
+      };
 
     case actionTypes.REMOVE_FROM_CART:
       const productIdToRemove = action.payload;
