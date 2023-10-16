@@ -5,8 +5,8 @@ const CartItem = ({ item, qtyChangeHandler, removeFromCart }) => (
   <div className="cartitem">
     <div className="cart-image">
       <img
-         src={item.imageUrl}
-         alt={item.name}
+        src={item.imageUrl}
+        alt={item.name}
       />
     </div>
 
