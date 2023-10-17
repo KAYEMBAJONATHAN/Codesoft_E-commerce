@@ -7,8 +7,10 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
+      console.log(state);
       const item = action.payload;
-      const existItem = state.cartItems.find((x) => x.product === item.product);
+      let existItem;
+      if (state.cartItems) existItem = state.cartItems.find((x) => x.product === item.product);
 
       if (existItem) {
         return {
@@ -16,11 +18,16 @@ const cartReducer = (state = initialState, action) => {
           cartItems: state.cartItems.map((x) => (x.product === existItem.product ? item : x)),
         };
       }
+      if (state.cartItems) {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, item],
+        };
+      }
       return {
         ...state,
-        cartItems: [...state.cartItems, item],
+        cartItems: [item],
       };
-
     case actionTypes.REMOVE_FROM_CART:
       const productIdToRemove = action.payload;
       return {

@@ -13,6 +13,7 @@
 .home-product {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
 }
 
 @media (max-width: 1232px) {

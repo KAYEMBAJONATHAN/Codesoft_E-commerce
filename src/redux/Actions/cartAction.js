@@ -23,11 +23,17 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
   }
 };
 
-export const removeFromCart = (id) => (dispatch, getState) => {
+export const removeFromCart = (productId) => (dispatch, getState) => {
+  const { cartItems } = getState().cart;
+
+  const existingItem = cartItems?.find((item) => item.product === productId);
+
+  if (!existingItem) {
+    return;
+  }
+
   dispatch({
     type: actionTypes.REMOVE_FROM_CART,
-    payload: id,
+    payload: productId,
   });
-
-  localStorage.setItem('cart', JSON.stringify(getState().cart.cartItems));
 };

@@ -20,15 +20,6 @@ const ProductScreen = () => {
     }
   }, [dispatch, product, id]);
 
-  // const isInStock = product && product.countInStock > 0;
-
-  // let statusMessage;
-  // if (isInStock) {
-  //   statusMessage = 'In Stock';
-  //  } else {
-  //   statusMessage = 'Out of Stock';
-  // }
-
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, qty));
     navigate('/cart');
@@ -67,7 +58,7 @@ const ProductScreen = () => {
               <p>
                 Status:
                 <span>
-                  {product.countInStoct > 0 ? 'In Stock' : 'Out of Stock'}
+                  {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
                 </span>
               </p>
               <p>

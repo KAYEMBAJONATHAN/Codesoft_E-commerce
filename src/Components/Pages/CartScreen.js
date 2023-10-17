@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'; // useHistory
+import { Link } from 'react-router-dom';
 import CartItem from '../cartItem';
 import { addToCart, removeFromCart } from '../../redux/Actions/cartAction';
 import './cartscreen.css';
 
 const CartScreen = () => {
   const dispatch = useDispatch();
-
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  // const history = useHistory();
 
   const qtyChangeHandler = (id, qty) => {
     dispatch(addToCart(id, qty));
@@ -21,15 +19,6 @@ const CartScreen = () => {
 
   const handleCheckout = () => {
     console.log('checkout');
-    // const outOfStockItems = cartItems.filter((item) => item.qty > item.countInStock);
-
-    // if (outOfStockItems.length > 0) {
-    // alert(`Some items in your cart are out of stock: ${outOfStockItems.map((item) => item.name).join(', ')}.`);
-    // } else if (cartItems.length === 0) {
-    // alert('Your cart is empty. Please add items to your cart before proceeding to checkout.');
-    // } else {
-    // history.push('/checkout');
-    // }
   };
 
   const getCartCount = () => (cartItems || []).reduce((qty, item) => Number(item.qty) + qty, 0);
