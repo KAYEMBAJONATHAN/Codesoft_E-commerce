@@ -18,7 +18,11 @@ const CartScreen = () => {
   };
 
   const handleCheckout = () => {
-    console.log('checkout');
+    if (cartItems && cartItems.length > 0) {
+      console.log('Proceede to checkout ...');
+    } else {
+      console.log('The cart is empty. Cannot proceed to checkout .');
+    }
   };
 
   const getCartCount = () => (cartItems || []).reduce((qty, item) => Number(item.qty) + qty, 0);
