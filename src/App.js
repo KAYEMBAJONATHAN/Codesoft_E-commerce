@@ -7,6 +7,8 @@ import CartScreen from './Components/Pages/CartScreen';
 import Navbar from './Components/navigation';
 import BackDrop from './Components/BackDrop';
 import SideDraw from './Components/sideDraw';
+import SignUp from './Components/signup';
+import Login from './Components/login';
 
 function App() {
   const [sideDraw, setSideDraw] = useState(false);
@@ -19,6 +21,8 @@ function App() {
       <main>
         <Routes>
           <Route exact path="/" element={<HomeScreen />} />
+          <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/login" element={<Login />} />
           <Route exact path="/product/:id" element={<ProductScreen />} />
           <Route exact path="/cart" element={<CartScreen />} />
         </Routes>

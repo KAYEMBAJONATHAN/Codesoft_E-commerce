@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import '../Style/cartitem.css';
 
 const CartItem = ({ item, qtyChangeHandler, removeFromCart }) => (
@@ -42,5 +43,18 @@ const CartItem = ({ item, qtyChangeHandler, removeFromCart }) => (
     </button>
   </div>
 );
+
+CartItem.propTypes = {
+  item: PropTypes.shape({
+    imageUrl: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    product: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    qty: PropTypes.number.isRequired,
+    countInStock: PropTypes.number.isRequired,
+  }),
+  qtyChangeHandler: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+};
 
 export default CartItem;

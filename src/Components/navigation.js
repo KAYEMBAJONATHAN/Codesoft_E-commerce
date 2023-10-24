@@ -1,6 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { loggedIn } from './login';
+import { signedIn } from './signup';
 import '../Style/navigation.css';
 
 const Navbar = ({ click }) => {
@@ -16,20 +18,32 @@ const Navbar = ({ click }) => {
       </div>
       <ul className="navbar-links">
         <li>
-          <Link to="/cart" className="cart-link">
-            <i className="fas fa-shopping-cart" />
-            <span>
-              Cart
-              <span className="Cart-badge">{getCartCount}</span>
-            </span>
+          <Link to="/signup" className="cart-link">
+            <span>SignUp</span>
           </Link>
         </li>
         <li>
-          <Link to="/" className="cart-link">
-            <span>
-              Shop
-            </span>
+          <Link to="/login" className="cart-link">
+            <span>Login</span>
           </Link>
+        </li>
+        <li>
+          {loggedIn ? (
+            <Link to="/cart" className="cart-link">
+              <i className="fas fa-shopping-cart" />
+              <span>
+                Cart
+                <span className="Cart-badge">{getCartCount()}</span>
+              </span>
+            </Link>
+          ) : null}
+        </li>
+        <li>
+          {signedIn ? (
+            <Link to="/" className="cart-link">
+              <span>Shop</span>
+            </Link>
+          ) : null}
         </li>
       </ul>
 
