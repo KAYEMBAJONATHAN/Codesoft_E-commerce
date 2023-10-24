@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loggedIn } from './login';
 import { signedIn } from './signup';
-import { Link } from 'react-router-dom';
 import '../Style/navigation.css';
 
 const Navbar = ({ click }) => {

@@ -13,16 +13,16 @@ const SignUp = () => {
     password: '',
   });
 
-  const signedInHandler = () => {
-    signedIn = true;
-  };
-
   const [error, setError] = useState();
   const navigate = useNavigate();
   const [signedIn, setSignedIn] = useState(false);
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
+  };
+
+  const signedInHandler = () => {
+    signedIn = true;
   };
 
   const handleSubmit = async (e) => {

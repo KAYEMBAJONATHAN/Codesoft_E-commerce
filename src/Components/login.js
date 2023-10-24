@@ -11,14 +11,14 @@ const Login = () => {
     password: '',
   });
 
-  const loginHandler = () => {
-    loggedIn = true;
-  };
-
   const [error, setError] = useState(null);
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
+  };
+
+  const loginHandler = () => {
+    loggedIn = true;
   };
 
   const handleSubmit = async (e) => {
