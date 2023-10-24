@@ -1,29 +1,43 @@
-import * as actionTypes from  '../constants/cartConstants';
+import * as actionTypes from '../constants/cartConstants';
 
-export const cartReducer = (state = {cartItems: [] }, action) => {
-  switch(action.type) {
+const initialState = {
+  cartItems: [],
+};
+
+const cartReducer = (state = initialState, action) => {
+  switch (action.type) {
     case actionTypes.ADD_TO_CART:
-     const item = action.payload
+      console.log(state);
+      const item = action.payload;
+      let existItem;
+      if (state.cartItems) existItem = state.cartItems.find((x) => x.product === item.product);
 
-     const existItem = state.cartItems.find((x) => x.product === item.product);
-
-     if(existItem) {
-       return {
-        ...state, 
-        cartItems: state.cartItems.map((x) => x.product === existItem.product ? item : x)
-       }
-     } else {
+      if (existItem) {
         return {
-            ...state,
-            cartItems: [...state.cartItems, item],
-        }
-     }
-     case actionTypes.REMOVE_FROM_CART: 
+          ...state,
+          cartItems: state.cartItems.map((x) => (x.product === existItem.product ? item : x)),
+        };
+      }
+      if (state.cartItems) {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, item],
+        };
+      }
       return {
         ...state,
-        cartItems: state.cartItems.filter((x) => x.product !== action.payload)
-      }
+        cartItems: [item],
+      };
+    case actionTypes.REMOVE_FROM_CART:
+      const productIdToRemove = action.payload;
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((x) => x.product !== productIdToRemove),
+      };
+
     default:
-        return state;
+      return state;
   }
-}
+};
+
+export default cartReducer;

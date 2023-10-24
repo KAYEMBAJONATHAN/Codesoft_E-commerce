@@ -1,32 +1,46 @@
-
 import { Link } from 'react-router-dom';
 import '../Style/cartitem.css';
 
-const CartItem = () => {
-   return(
-     <div className="cartitem">
-        <div className="cart-image">
-           <img src="#" alt="#" />
-        </div>
+const CartItem = ({ item, qtyChangeHandler, removeFromCart }) => (
+  <div className="cartitem">
+    <div className="cart-image">
+      <img
+        src={item.imageUrl}
+        alt={item.name}
+      />
+    </div>
 
-        <Link to={`/product/${111}`} className="cart-name">
-           <p>Product 1</p>
-        </Link>
+    <Link
+      to={`/product/${item.product}`}
+      className="cart-name"
+    >
+      <p>{item.name}</p>
+    </Link>
+    <p className="cart-price">
+      $
+      {item.price}
+    </p>
 
-        <p className="cart-price">$504.94</p>
+    <select
+      className="cart-select"
+      value={item.qty}
+      onChange={(e) => qtyChangeHandler(item.product, e.target.value)}
+    >
+      {[...Array(item.countInStock).keys()].map((x) => (
+        <option key={x + 1} value={x + 1}>
+          {x + 1}
+        </option>
+      ))}
+    </select>
 
-        <select className="cart-select">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-
-        <button className="cart-deleteBtn">
-          <i className="fas fa-trash"></i>
-        </button>
-     </div>
-   );
-}
+    <button
+      type="button"
+      className="cart-deleteBtn"
+      onClick={() => removeFromCart(item.product)}
+    >
+      <i className="fas fa-trash" />
+    </button>
+  </div>
+);
 
 export default CartItem;
